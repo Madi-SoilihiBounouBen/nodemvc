@@ -1,0 +1,31 @@
+{
+  "name": "nodemvc",
+  "version": "1.0.0",
+  "description": "Apprendre le MVC",
+  "keywords": [
+    "serveur"
+  ],
+  "homepage": "https://github.com/Madi-SoilihiBounouBen/nodemvc#readme",
+  "bugs": {
+    "url": "https://github.com/Madi-SoilihiBounouBen/nodemvc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Madi-SoilihiBounouBen/nodemvc.git"
+  },
+  "license": "ISC",
+  "author": "Madi Soilihi Bounou Ben",
+  "type": "commonjs",
+  "main": "myserver.js",
+  "scripts": {
+    "test": "serveur"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-myconnection": "^1.0.4",
+    "mysql2": "^3.22.1",
+    "sequelize": "^6.37.8",
+    "sqlite3": "^6.0.1"
+  }
+}
