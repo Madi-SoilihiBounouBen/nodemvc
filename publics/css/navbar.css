@@ -4,4 +4,34 @@
 .navbar{
     width: 100%;
     background-color: #555;
+    overflow: auto  ;
+}
+
+/* Je sélectionne la classe "navbar"  et les balises <a> */
+.navbar a{
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Lorsque je survole un lien de la barre de navigation, la couleur de fond change */
+.navbar a:hover{
+   background-color: #030101;
+}
+
+.active{
+    background-color: #04AA6D;
+}
+
+
+/* Je rends responsive la barre de navigation. Il pourra s'adapter à différentes tailles d'écran (smartphones, tablettes, TV, ordinateur) */
+@media screen and (max-width: 500px){
+    .navbar a{
+        float: none;
+        display: block; /* Affiche le menu de navigation en horizontal */
+    }
+    
 }
