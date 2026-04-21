@@ -6,6 +6,8 @@ const express = require("express");
 // J'importe le contrôleur d'authentification pour pouvoir utiliser les méthodes qu'il contient pour gérer les routes d'authentification.
 const authentificationController = require("../controllers/authentificationController");
 
+const userController = require("../controllers/userController"); // J'importe le contrôleur userController pour pouvoir utiliser la méthode create qui gère la création d'un nouvel utilisateur dans la base de données lorsque la route "/register" est appelée avec une requête POST.
+
 // Je crée un routeur Express pour gérer les routes d'authentification séparément du reste de l'application.
 const router = express.Router();
 
@@ -13,7 +15,9 @@ const router = express.Router();
 router.get("/register", authentificationController.registerView);
 
 // Je trace la route pour enregistrer un utilisateur en utilisant la méthode POST, car on envoie des données (email et password) pour créer un nouvel utilisateur. La route est "/register" et elle appelle la méthode registerUser du contrôleur d'authentification.
-router.post("/register", authentificationController.registerUser);
+//router.post("/register", authentificationController.registerUser);
+
+router.post("/register", userController.create); // J'utilise la méthode create du contrôleur userController pour gérer la création d'un nouvel utilisateur lorsque la route "/register" est appelée avec une requête POST. Cela signifie que lorsque le formulaire d'inscription est soumis, les données seront envoyées à cette route et traitées par la méthode create du userController pour créer un nouvel utilisateur dans la base de données.)
 
 // J'exporte le "router" pour le rendre disponible dans d'autres parties de l'application, notamment dans le fichier app.js où je vais l'utiliser pour gérer les routes d'authentification.
 module.exports = router;
