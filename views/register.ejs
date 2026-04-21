@@ -9,6 +9,26 @@
     <%- include("navbar") -%>
     
     <h1>Authentification</h1>
+
+    <form action="/register" method="post">
+
+        <div class="contener">
+            <h3>S'enregistrer</h3>
+            <p>Veuillez comptéter tous les champs.</p>
+
+            <hr> <!-- Insérer une ligne horizontal -->
+             
+            <!-- Zone de saisie d'email -->
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+
+            <!-- Zone de saisie de mode de passe -->
+             <label for="">Mode de passe</label>
+             <input type="password" name="motdepasse" id="motdepasse" required>
+
+             <button type="submit">Enregistrer</button>
+        </div>
+    </form>
     
 </body>
 </html>
