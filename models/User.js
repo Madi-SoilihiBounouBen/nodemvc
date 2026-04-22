@@ -1,44 +1,32 @@
 /**
- * User.js est un modèle qui sert à créer des utilisateurs. Le modèle User est de : id, email, password
+ * User.js est un modele qui sert a creer des utilisateurs.
+ * Le modele User contient : id, email, passwordUser.
  */
 
-// J'importe le module DataTypes de Sequelize pour définir les types de données des champs du modèle User.
-const DataTypes = require("sequelize");
+// J'importe DataTypes depuis Sequelize pour definir les types de donnees du modele User.
+const { DataTypes } = require("sequelize");
 
-// J'importe l'instance de Sequelize que j'ai créée dans le fichier db.js pour pouvoir définir le modèle User en utilisant cette instance.
-const sequelize = require("../db"); // les .. permettent de remonter d'un niveau dans l'arborescence des dossiers pour accéder au fichier db.js qui se trouve à la racine du projet
-const { Sequelize } = require(".");
-
-/*
-module.exports = sequelize.define(
-    "User",{
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
+module.exports = (sequelize) => {
+    const UserModel = sequelize.define(
+        "user",
+        {
+            id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                autoIncrement: true,
+            },
+            email: {
+                type: DataTypes.STRING,
+                unique: true // L'email doit etre unique pour chaque utilisateur
+            },
+            passwordUser: {
+                type: DataTypes.STRING,
+            }
         },
-        email: {
-            type: DataTypes.STRING,
-            unique: true, // L'email doit être unique pour chaque utilisateur
-        },
-        passwordUser: {
-            type: DataTypes.STRING,
+        {
+            timestamps: false
         }
+    );
 
-    }
-    
-);
-*/
-
-module.exports = (sequelize, Sequelize) => {
-    const UserModel = sequelize.define("user", {
-        email: {
-            type: Sequelize.STRING,
-            unique: true // L'email doit être unique pour chaque utilisateur
-        },
-        passwordUser: {
-            type: Sequelize.STRING,
-        }
-    });
     return UserModel;
 };

@@ -2,7 +2,7 @@ module.exports = {
     HOST: "localhost",
     USER: "root",
     PASSWORD: "marouvatou27BNR**",//pas sécurisé de l'écrire ici
-    BD: "maygourmet",
+    DB: "maygourmet",
     dialect: "mysql",
     pool: {
         max: 5,
@@ -14,7 +14,7 @@ module.exports = {
 };
 
 /**
- * Les paramètres HOST, USER, PASSWORD, BD et dialect sont utilisés pour se connecter à MySql.
+ * Les paramètres HOST, USER, PASSWORD, DB et dialect sont utilisés pour se connecter à MySql.
  * Le paramètre pool est utilisé pour Squelize :
  * max : nombre maximum de connexions dans le pool
  * min : nombre minimum de connexions dans le pool

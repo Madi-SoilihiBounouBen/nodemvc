@@ -14,7 +14,8 @@ exports.create = (req, res) => {
     };
 
     User.create(user).then(data => {
-        res.send(data);
+        // Rediriger vers l'accueil après l'inscription
+        res.redirect("/");
     }).catch(err => {
         res.status(500).send({
             message: 

@@ -6,11 +6,9 @@ const Sequelize = require("sequelize");
 
 
 // Je crée une instance de Sequelize en utilisant les paramètres de connexion définis dans dbConfig. Je lui passe les informations d'hôte, d'utilisateur, de mot de passe et de dialecte pour configurer la connexion à la base de données MySQL. Je configure également les options de pool pour gérer les connexions à la base de données.
-const sequelize = new Sequelize(dbConfig.HOST, dbConfig.USER, dbConfig.PASSWORD, {
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST, // L'hôte de la base de données MySQL
     dialect: dbConfig.dialect, // Le dialecte de la base de données, dans ce cas "mysql" pour indiquer que nous utilisons MySQL comme système de gestion de base de données
-    operatorsAliases: false, // Cette option est utilisée pour désactiver les alias d'opérateurs obsolètes dans Sequelize. En la mettant à false, on évite les avertissements liés à l'utilisation d'alias d'opérateurs qui ne sont plus recommandés dans les versions récentes de Sequelize.
-
 
     // Les options de pool sont utilisées pour gérer les connexions à la base de données. Elles définissent le nombre maximum et minimum de connexions dans le pool, ainsi que les temps d'attente pour l'acquisition et l'inactivité des connexions.
     pool: {

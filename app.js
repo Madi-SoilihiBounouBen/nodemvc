@@ -2,13 +2,6 @@
 
 const express = require("express");
 
-// J'importe mysql2
-const mysql = require("mysql2");
-
-// Importe my express connexion
-const myConnection = require('express-myconnection');
-
-
 // J'importe la route accueilRoute qui gère les routes de la page d'accueil
 const accueilRoute = require("./routes/accueilroute");
 const authentificationRoute = require("./routes/authentificationRoute");
@@ -37,24 +30,6 @@ db.sequelize.sync({force: false}).then(() => {
     console.error("Failed to sync db", err.message);
 });
 
-
-/*
-// configurer la connexion à la base de données MySQL
-const optionsConnectionBaseDeDonnees = {
-    host: "localhost",
-    user: "root",
-    password: "marouvatou27BNR**",//pas sécurisé de l'écrire ici
-    database: "maygourmet",
-    port:3306
-
-    
-}; 
-
-
-
-// J'utilise le middleware express-myconnection pour gérer la connexion à la base de données MySQL. Je lui passe le module mysql, les options de connexion et le type de connexion (pool).
-app.use(myConnection(mysql, optionsConnectionBaseDeDonnees, 'pool'));
-*/
 
 // J'utilise le routeur accueilRoute pour gérer à partir de la route "/"
 app.use("/", accueilRoute);

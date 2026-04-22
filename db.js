@@ -1,16 +1,53 @@
-/**
- * Permet à Sequelize de se connecter à la base de données
- */
+const e = require("express");
 
-// Import de Sequelize
-const Sequelize = require("sequelize"); 
+// Le fichier AuthentificationController.js a pour mission de gerer les authentifications des utilisateurs.
+module.exports = {
+    registerView: (req, res) => {
+        res.render("register");
+    },
 
-// Import de la configuration de la base de données. Je vais créer une instance de Sequelize en utilisant les informations de connexion à la base de données. Je spécifie le nom de la base de données, le nom d'utilisateur, le mot de passe, l'hôte et le dialecte (MySQL dans ce cas).
-const sequelize = new Sequelize("mygourmet", "root", "marouvatou27BNR**", {
-    host: "localhost",
-    dialect: "mysql",
-}
-);
+    // Je cree une methode asynchrone (async)
+    registerUser: async (req, res) => {
+        console.log("### Controller registerUser appele ###");
+        console.log("### Controller - req :", req.body); // Affiche les donnees recues dans la requete POST
 
-// module.exports est utilisé pour exporter l'instance de Sequelize afin qu'elle puisse être utilisée dans d'autres parties de l'application, notamment dans les modèles pour définir les schémas de la base de données et effectuer des opérations CRUD.
-module.exports = sequelize;
+        // Je recupere les donnees du formulaire d'inscription a partir de req.body
+        const emailUser = req.body.email;
+        const passwordUser = req.body.motdepasse;
+
+        console.log("### emailUser :", emailUser);
+        console.log("### passwordUser :", passwordUser);
+
+        /* Je m'assure que le mail et le mot de passe sont bien renseignes avant de tenter de les inserer dans la base de donnees. */
+        if (!emailUser || !passwordUser) {
+            console.log("### Erreur : Email ou mot de passe manquant ###");
+            return res.render("register", {
+                error: "Veuillez completer tous les champs."
+            });
+        }
+
+        // Il n'y a pas d'erreur, passe a la suite
+        const requeteSql = "INSERT INTO users (id, email, passwordUser) VALUES (?,?, ?)";
+        const ordreDonnes = [null, emailUser, passwordUser];
+
+        // J'execute la requete SQL en utilisant la connexion a la base de donnees.
+        req.getConnection((err, connection) => {
+            if (err) {
+                console.log("### Erreur de connexion a la base de donnees ###", err);
+                return res.status(500).send("Erreur de connexion a la base de donnees.");
+            }
+
+            connection.query(requeteSql, ordreDonnes, (err, nouvelUtilisateur) => {
+                if (err) {
+                    console.log("### Erreur de requete : ", err);
+                    return res.status(500).send("Erreur lors de l'enregistrement de l'utilisateur.");
+                }
+
+                console.log("Utilisateur enregistre avec succes :", nouvelUtilisateur);
+
+                // Redirige vers la page d'accueil
+                res.redirect("/");
+            });
+        });
+    }
+};
